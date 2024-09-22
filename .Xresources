@@ -1,0 +1,10 @@
+xterm*background: black
+xterm*foreground: white
+xterm*scrollBar: false
+xterm*faceName: LiberationMono:size=10:antialias=true
+
+xterm.vt100.translations:      #override \n\
+Ctrl <Key> +: larger-vt-font() \n\
+Ctrl <Key> -: smaller-vt-font() \n\
+Ctrl Shift <Key>C:  copy-selection(CLIPBOARD) \n\
+Ctrl Shift <Key>V:  insert-selection(CLIPBOARD)

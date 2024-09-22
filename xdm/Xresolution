@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Save the current resolution before closing XDM.
+# This script is called from ExecStop of xdm.service.
+
+RESOLUTION=`grep Allocate /var/log/Xorg.0.log | grep -Eo '[0-9]+x[0-9]+' | tail -n1`
+if [ -z "$RESOLUTION" ]; then
+	RESOLUTION=`grep 'Modeline ' /var/log/Xorg.0.log | head -n1 | grep -Eo '[0-9]+x[0-9]+'`
+fi
+
+echo $RESOLUTION > /etc/X11/xdm/last-resolution

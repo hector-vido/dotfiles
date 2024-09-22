@@ -1,0 +1,40 @@
+!ver a pagina do man do xdm para maiores detalhes das opções disponívels
+
+!login
+
+!eliminando mensagem padrão:
+xlogin.login.greeting: 
+    
+!configurações do prompt
+xlogin.login.namePrompt:    Username:\040
+xlogin.login.passwdPrompt:  Password:\040
+xlogin.login.fail:          Incorrect username/password
+xlogin.login.promptFace:    LiberationMono:size=12:antialias=true:style=Bold
+xlogin.login.face:          LiberationMono:size=12:antialias=true
+xlogin.login.failFace:      LiberationMono:size=12:antialias=true:style=Bold
+xlogin.login.promptColor:   #ffffff
+xlogin.login.failColor:     red
+xlogin.login.width:         400
+! let height be automatically calculated
+! xlogin.login.height:        200
+xlogin.login.x:		    500
+xlogin.login.y:             400  
+xlogin.login.borderWidth:   0
+xlogin.login.foreground:    #ffffff
+xlogin.login.background:    #000000
+xlogin.login.inpColor:      #000000
+xlogin.login.sepColor: #ffffff
+xlogin.login.echoPasswd:    true
+
+desligamento e reinicialização:
+xmessage.form.message.scrollVertical:      never
+xmessage.form.message.scrollHorizontal:    never
+xmessage.form.message.background:          black
+xmessage.geometry:                 -0-0
+xmessage.form.background:          black
+!.xmessage.form.Command.font:        -misc-liberation mono-medium-r-normal--0-0-0-0-m-0-iso8859-1
+xmessage*faceName:          Liberation Mono
+xmessage*faceSize:          12
+xmessage.form.Command.foreground:  #4d4d4d
+xmessage.form.Command.background:  black
+xmessage.form.Command.shapeStyle:  Rectangle

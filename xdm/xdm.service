@@ -1,0 +1,17 @@
+# /usr/lib/systemd/system/xdm.service
+[Unit]
+Description=X11 Display Manager
+Documentation=man:xdm(1)
+Conflicts=getty@tty1.service
+After=systemd-user-sessions.service getty@tty1.service plymouth-quit.service
+
+[Service]
+ExecStart=/usr/bin/xdm -nodaemon
+ExecStop=/etc/X11/xdm/Xresolution
+Type=notify
+NotifyAccess=all
+Restart=always
+IgnoreSIGPIPE=no
+
+[Install]
+Alias=display-manager.service

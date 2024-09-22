@@ -1,0 +1,39 @@
+#!/bin/sh
+
+# resolution
+# the file last-resolution is generated when xdm stops, it is
+# invoked by Xresolution in ExecStop present on xdm.service
+#
+RESOLUTION=`cat /etc/X11/xdm/last-resolution`
+if [ -z "$RESOLUTION" ]; then
+	RESOLUTION=`xrandr | grep '*' | awk '{ print $1 }'`
+fi
+SCREEN_WIDTH=`echo $RESOLUTION | cut -dx -f1`
+SCREEN_HEIGHT=`echo $RESOLUTION | cut -dx -f2`
+/usr/bin/xrandr -s ${SCREEN_WIDTH}x${SCREEN_HEIGHT}
+
+# variables for image positioning
+#
+BG_COLOR='#000000'
+LOGO_WIDTH=400
+LOGO_HEIGHT=156
+POSX=460
+POSY=300
+
+# put an image in the background
+#
+/usr/bin/feh --image-bg $BG_COLOR --geometry ${LOGO_WIDTH}x${LOGO_HEIGHT}+$POSX+$POSY --scale-down --auto-zoom /etc/X11/xdm/fedora-logo.png &
+
+# buttons for poweroff/reboot
+#
+(
+	xmessage -buttons Shutdown:20,Restart:21 '' ;
+	case $? in
+		20)
+ 			exec /bin/systemctl poweroff;;
+		21)
+ 			exec /bin/systemctl reboot;;
+ 		*)
+ 			echo "Xmessage closed on `date`";;
+	esac
+)&
